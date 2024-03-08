@@ -68,7 +68,8 @@ const App = () => {
     else return "Obesity";
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     MetricCalculation();
     StandardCalculation();
   };
@@ -83,17 +84,34 @@ const App = () => {
       <div className="main">
         <button
           className="btn btn-secondary mx-4  mb-5"
-          onClick={() =>
-            setShow({ ...show, standard: true, metric: false, graph: false })
-          }
+          onClick={() => {
+            setShow({
+              ...show,
+              standard: true,
+              metric: false,
+              graph: false,
+              metricRes: false,
+            });
+            formData.height = "";
+            formData.weight = "";
+          }}
         >
           Standard
         </button>
         <button
           className="btn btn-secondary mx-4 mb-5"
-          onClick={() =>
-            setShow({ ...show, metric: true, standard: false, graph: false })
-          }
+          onClick={() => {
+            setShow({
+              ...show,
+              metric: true,
+              standard: false,
+              graph: false,
+              standardRes: false,
+            });
+            formData.heightInFeet = "";
+            formData.heightInInches = "";
+            formData.weightInPounds = "";
+          }}
         >
           Metric
         </button>
